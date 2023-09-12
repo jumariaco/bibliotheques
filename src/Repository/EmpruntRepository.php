@@ -21,6 +21,20 @@ class EmpruntRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunt::class);
     }
 
+   /**This method finds 10 last borrowings at the chronological level,sorting in descending ordre of borrowing date 
+    * @return Emprunt[] Returns an array of Emprunt objects
+    */
+//    public function findByLast10(): array
+//    {
+//        return $this->createQueryBuilder('e')
+//            ->andWhere('e.id IS NOT null')
+//            ->orderBy('e.dateEmprunt', 'DESC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
 //    /**
 //     * @return Emprunt[] Returns an array of Emprunt objects
 //     */

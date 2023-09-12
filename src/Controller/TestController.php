@@ -159,11 +159,48 @@ class TestController extends AbstractController
         $em=$doctrine->getManager();
         $empruntRepository = $em->getRepository(Emprunt::class);
 
+        //requêtes de lecture
+
+        // $emprunts10=$empruntRepository->findByLast10();
+        
+        //requête de création
+
+        $foofoo = new Emprunt();
+        $foofoo->setDateEmprunt(new Datetime ('2020-12-01 16:00:00'));
+        $foofoo->setDateRetour(null);
+        $emprunteurRepository = $em->getRepository(Emprunteur::class);
+        $emprunteur1=$emprunteurRepository->find(1);
+        $foofoo->setEmprunteur($emprunteur1);
+        $livreRepository = $em->getRepository(Livre::class);
+        $livre1=$livreRepository->find(1);
+        $foofoo->setLivre ($livre1);
+
+        $em->persist($foofoo);
+        try{
+            $em->flush();
+        }catch(Exception $e){
+            dump($e->getMessage());
+        }
+        //requête de modification
+        $emprunt3=$empruntRepository->find(3);
+        $emprunt3->setDateRetour(New Datetime ('2020-05-01 10:00:00'));
+        $em->flush();
+
+        //requête de suppression
+
+        $emprunt42=$empruntRepository->find(42);
+        if($emprunt42){
+        $em->remove($emprunt42);
+        $em->flush();
+        }
 
         $title='Test des Emprunts';
 
         return $this->render('test/emprunt.html.twig', [
             'title' => $title,
+            // 'emprunts10' => $emprunts10,
+            'emprunt3' => $emprunt3,
+            'foofoo' => $foofoo,
         ]);
     }
 }

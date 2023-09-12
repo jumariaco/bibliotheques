@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+<h2>Liste des 10 derniers emprunts par ordre choronologique, triés par ordre décroissant de date d'emprunt</h2>
+{# {% for emprunt in emprunts10 %}
+<p>{{emprunt.dateEmprunt}} {{emprunt.dateRetour}} ( id : {{emprunt.id}}) </p>
+{% endfor %} #}
+
+{% endblock %}

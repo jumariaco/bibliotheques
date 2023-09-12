@@ -4,7 +4,13 @@ namespace App\Controller;
 
 use DateTime;
 use Exception;
+use App\Entity\Auteur;
+use App\Entity\Emprunt;
+use App\Entity\Emprunteur;
+use App\Entity\Genre;
+use App\Entity\Livre;
 use App\Entity\User;
+
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +26,7 @@ class TestController extends AbstractController
         $em=$doctrine->getManager();
         $userRepository = $em->getRepository(User::class);
 
+        //requêtes de lecture
         $users=$userRepository->findAll();
 
         $user1=$userRepository->find(1);
@@ -49,12 +56,32 @@ class TestController extends AbstractController
     {
         $em=$doctrine->getManager();
         $livreRepository = $em->getRepository(Livre::class);
+        //requête de lecture
 
+        $livres= $livreRepository->findAll();
+        
+        $livre1= $livreRepository ->find (1);
+
+        $lorem = $livreRepository ->findKeyword('lorem');
+
+        $auteurRepository = $em->getRepository(Auteur::class);
+        $auteur2 = $auteurRepository -> find(2);
+        $auteur2livre = $livreRepository ->findByAuteur ($auteur2);
+
+        //A FINIR GENRE
+        // $genreRepository = $em->getRepository(Genre::class);
+        // $genre2 = $genreRepository -> find(2);
+        // $genre2livre = $livreRepository ->findByGenre ($genre2);
 
         $title='Test des Livres';
 
         return $this->render('test/livre.html.twig', [
             'title' => $title,
+            'livres' => $livres,
+            'livre1' => $livre1,
+            'lorem' => $lorem,
+            'auteur2livre' =>$auteur2livre,
+            // 'genre2livre' => $genre2livre,
         ]);
     }
 

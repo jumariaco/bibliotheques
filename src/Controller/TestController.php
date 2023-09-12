@@ -69,9 +69,34 @@ class TestController extends AbstractController
         $auteur2livre = $livreRepository ->findByAuteur ($auteur2);
 
         //A FINIR GENRE
-        // $genreRepository = $em->getRepository(Genre::class);
+        $genreRepository = $em->getRepository(Genre::class);
         // $genre2 = $genreRepository -> find(2);
         // $genre2livre = $livreRepository ->findByGenre ($genre2);
+
+        //requête de création
+        // $totum = new Livre();
+        // $totum->setTitre ('Totum autem id externum');
+        // $totum->setAnneeEdition(2020);
+        // $totum->setNombrePage(300);
+        // $totum->setCodeIsbn('9790412882714');
+        // $auteur2=$auteurRepository->find(2);
+        // $totum->setAuteur($auteur2);
+        // $genre6=$genreRepository->find(6);
+        // $totum->addGenre($genre6);
+        // $em->persist($totum);
+        // try{
+        //     $em->flush();
+        // }catch(Exception $e){
+        //     dump($e->getMessage());
+        // }
+
+        //requête de mise à jour
+        $livre2=$livreRepository->find(2);
+        $livre2->setTitre('Aperiendum est igitur');
+        $genreRepository = $em->getRepository(Genre::class);
+        $genre5=$genreRepository->find(5);
+        $livre2->addGenre($genre5);
+        $em->flush();
 
         $title='Test des Livres';
 
@@ -82,6 +107,8 @@ class TestController extends AbstractController
             'lorem' => $lorem,
             'auteur2livre' =>$auteur2livre,
             // 'genre2livre' => $genre2livre,
+            // 'totum' => $totum,
+            'livre2' => $livre2,
         ]);
     }
 

@@ -98,6 +98,13 @@ class TestController extends AbstractController
         $livre2->addGenre($genre5);
         $em->flush();
 
+        //requête de suppression
+        $livre123=$livreRepository->find(123);
+        if($livre123){
+            $em->remove($livre123);
+            $em->flush();
+        }
+
         $title='Test des Livres';
 
         return $this->render('test/livre.html.twig', [

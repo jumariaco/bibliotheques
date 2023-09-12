@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+<h2>Liste de tous les emprunteurs triés par ordre alphabétique de nom et prénom</h2>
+{% for emprunteur in emprunteurs %}
+<p>{{emprunteur.nom}} {{emprunteur.prenom}} ( id : {{emprunteur.id}}) (telephone : {{emprunteur.telephone}})</p>
+{% endfor %}
+
+<h2>Emprunteur dont l'id est 3</h2>
+<p>{{emprunteur3.nom}} {{emprunteur3.prenom}} ( id : {{emprunteur3.id}}) (telephone : {{emprunteur3.telephone}})</p>
+
+<h2>Emprunteur lié au user qui a l'id 3</h2>
+{% for emprunteur in user3emprunteur %}
+<p>{{emprunteur.nom}} {{emprunteur.prenom}} (telephone :{{emprunteur.telephone}}) ( id : {{emprunteur.id}})</p>
+{% endfor %}
+
+<h2>Liste de tous les emprunteurs dont le nom ou prénom contient le mot-clé 'foo', triés par ordre alphabétique de nom et prénom</h2>
+{% for emprunteur in foo %}
+<p>{{emprunteur.nom}} {{emprunteur.prenom}} (telephone :{{emprunteur.telephone}}) ( id : {{emprunteur.id}})</p>
+{% endfor %}
+
+<h2>Liste de tous les emprunteurs dont le téléphone contient le mot-clé '1234', triés par ordre alphabétique de nom et prénom</h2>
+{% for emprunteur in tel1234 %}
+<p>{{emprunteur.nom}} {{emprunteur.prenom}} (telephone :{{emprunteur.telephone}}) ( id : {{emprunteur.id}})</p>
+{% endfor %}
+
+
+{% endblock %}

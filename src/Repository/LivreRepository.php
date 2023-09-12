@@ -51,8 +51,7 @@ class LivreRepository extends ServiceEntityRepository
         ;
     }
 
-     /** This methode finds author ID books containing a keyword, listing by alphabetical list
-     * This method finds books in link with author, by making inner joins with authors and with books.
+     /** This method finds books in link with author, by making inner joins with authors and with books.
      * @param Auteur $auteur The author for which we want to find the books
      * @return Livre[] Returns an array of books objects
      */

@@ -125,11 +125,30 @@ class TestController extends AbstractController
         $em=$doctrine->getManager();
         $emprunteurRepository = $em->getRepository(Emprunteur::class);
 
+        //requêtes de lecture
+        $emprunteurs= $emprunteurRepository->findAll();
+        
+        $emprunteur3=$emprunteurRepository->find(3);
+
+        $userRepository = $em->getRepository(User::class);
+        $user3 = $userRepository -> find(3);
+        $user3emprunteur = $emprunteurRepository ->findByUser ($user3);
+
+        $foo = $emprunteurRepository ->findKeyword('foo');
+
+        $tel1234 = $emprunteurRepository ->findByKeyword(1234);
+
+        //ajouter la requête de date de création
 
         $title='Test des Emprunteurs';
 
         return $this->render('test/emprunteur.html.twig', [
             'title' => $title,
+            'emprunteurs' => $emprunteurs,
+            'emprunteur3' =>$emprunteur3,
+            'user3emprunteur' => $user3emprunteur,
+            'foo' =>$foo,
+            'tel1234' => $tel1234,
             
         ]);
     }

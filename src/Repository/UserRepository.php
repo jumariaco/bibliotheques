@@ -40,6 +40,49 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+
+   /** This methode finds all users, listing by alphabetical list of mails
+    * @return User[] Returns an array of User objects
+    */
+   public function findAll(): array
+   {
+       return $this->createQueryBuilder('u')
+           ->andWhere('u.id IS NOT null')
+           ->orderBy('u.email', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+  /** This methode finds users containing a keyword, listing by alphabetical list of mails
+    * @param string @keyword THe keyword to search for 
+    * @return User[] Returns an array of User objects
+    */
+    public function findKeyword(string $keyword): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :keyword')
+            ->setParameter('keyword', "%$keyword%")
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+  /** This methode finds disabled users, listing by alphabetical list of mails
+    * @return User[] Returns an array of User objects
+    */
+    public function findDisabled(string $keyword): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.actif LIKE :keyword')
+            ->setParameter('keyword', "%$keyword%")
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

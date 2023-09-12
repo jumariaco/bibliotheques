@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $actif = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Emprunteur $emprunteur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +130,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setActif(bool $actif): static
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getEmprunteur(): ?Emprunteur
+    {
+        return $this->emprunteur;
+    }
+
+    public function setEmprunteur(?Emprunteur $emprunteur): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($emprunteur === null && $this->emprunteur !== null) {
+            $this->emprunteur->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($emprunteur !== null && $emprunteur->getUser() !== $this) {
+            $emprunteur->setUser($this);
+        }
+
+        $this->emprunteur = $emprunteur;
 
         return $this;
     }

@@ -29,7 +29,6 @@ class LivreRepository extends ServiceEntityRepository
    public function findAll(): array
    {
        return $this->createQueryBuilder('l')
-           ->andWhere('l.id IS NOT null')
            ->orderBy('l.titre', 'ASC')
            ->getQuery()
            ->getResult()
@@ -67,6 +66,27 @@ class LivreRepository extends ServiceEntityRepository
        ;
     }
 
+    //  /** This methode finds books containing a keyword for the genre, listing by alphabetical list
+    //  * This method finds books in link with genre, by making inner joins with genres and with books.
+    //  * @param Genre $genre The genre for which we want to find the books
+    //  * @param Keyword $keyword The keyword for which we want to find the books
+    //  * @return Livre[] Returns an array of books objects
+    //  */
+    // public function findByGenre($genre, string $keyword): array
+    // {
+    //    return $this->createQueryBuilder('l')
+    //         ->innerJoin('l.livreGenre','lg')
+    //         ->innerJoin('lg.genre','g')
+    //         ->andWhere('g = :genre')
+    //         ->setParameter('genre', $genre)
+    //         ->andWhere('l.genre LIKE :keyword')
+    //         ->setParameter('keyword', "%$keyword%")
+    //         ->orderBy('l.titre', 'ASC')
+    //         ->getQuery()
+    //         ->getResult()
+    //    ;
+    // }
+
      /** This methode finds books containing a keyword for the genre, listing by alphabetical list
      * This method finds books in link with genre, by making inner joins with genres and with books.
      * @param Genre $genre The genre for which we want to find the books
@@ -75,10 +95,9 @@ class LivreRepository extends ServiceEntityRepository
     public function findByGenre($genre): array
     {
        return $this->createQueryBuilder('l')
-            ->innerJoin('l.livreGenre','lg')
-            ->innerJoin('lg.genre','g')
-            ->andWhere('g = :genre')
-            ->setParameter('genre', $genre)
+            ->innerJoin('l.genres','g')
+            ->andWhere('g.nom LIKE :keyword')
+            ->setParameter('keyword', "%roman%")
             ->orderBy('l.titre', 'ASC')
             ->getQuery()
             ->getResult()

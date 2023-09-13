@@ -6,25 +6,25 @@
 <h1>{{title}}</h1>
 <h2>Liste de tous les livres triés par ordre alphabétique</h2>
 {% for livre in livres %}
-<p>{{livre.titre}} ( id : {{livre.id}})</p>
+<p>{{livre.titre}} ( id : {{livre.id}}) code isbn : {{livre.codeIsbn}}, Année édition : {{livre.anneeEdition}}, {{livre.nombrePage}} pages</p>
 {% endfor %}
 
 <h2>Livre dont l'id est 1</h2>
-<p>{{livre1.titre}} (id : {{livre1.id}})</p>
+<p>{{livre1.titre}} (id : {{livre1.id}}) code isbn : {{livre1.codeIsbn}}, Année édition : {{livre1.anneeEdition}}, {{livre1.nombrePage}} pages</p>
 
 <h2>Liste de tous les livres dont le titre contient 'lorem' triés par ordre alphabétique</h2>
 {% for livre in lorem %}
-<p>{{livre.titre}} ( id : {{livre.id}})</p>
+<p>{{livre.titre}} ( id : {{livre.id}}) code isbn : {{livre.codeIsbn}}, Année édition : {{livre.anneeEdition}}, {{livre.nombrePage}} pages</p>
 {% endfor %}
 
 <h2>Livre dont l'id de l'auteur est 2</h2>
 {% for livre in auteur2livre %}
-<p>{{livre.titre}} (id : {{livre.id}}) </p>
+<p>{{livre.titre}} (id : {{livre.id}}) code isbn : {{livre.codeIsbn}}, Année édition : {{livre.anneeEdition}}, {{livre.nombrePage}} pages </p>
 {% endfor %}
 
-<h2>Livre dont l'id du genre est 2</h2>
+<h2>Liste des livres dont le genre contient le mot-clé 'roman', par ordre alphabétique de titre</h2>
 {% for livre in genre2livre %}
-<p>{{livre.titre}} (id : {{livre.id}}) </p>
+<p>{{livre.titre}} (id : {{livre.id}}) code isbn : {{livre.codeIsbn}}, Année édition : {{livre.anneeEdition}}, {{livre.nombrePage}} pages </p>
 {% endfor %}
 
 {% endblock %}

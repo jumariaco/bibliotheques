@@ -6,23 +6,29 @@
 <h1>{{title}}</h1>
 <h2>Liste de tous les utilisateurs triés par ordre alphabétique d'email</h2>
 {% for user in users %}
-<p>{{user.email}} ( id : {{user.id}})</p>
+<p>{{user.email}} ( id : {{user.id}}) {{ user.actif ? 'L\'utilisateur est actif' : 'L\'utilisateur n\'est pas actif' }}
+ {{ user.roles | join(', ') }}</p>
 {% endfor %}
 
 <h2>Identification de l'utilisateur dont l'id est 1</h2>
-<p>{{user1.email}} ( id : {{user1.id}})</p>
+<p>{{user1.email}} ( id : {{user1.id}}) {{ user1.actif ? 'L\'utilisateur est actif' : 'L\'utilisateur n\'est pas actif' }}
+ {{ user1.roles | join(', ') }}
+</p>
 
 <h2>Identification de l'utilisateur dont l'email est foo.foo@example.com</h2>
-<p>{{foo.email}} ( id : {{foo.id}})</p>
+<p>{{foo.email}} ( id : {{foo.id}}) {{ foo.actif ? 'L\'utilisateur est actif' : 'L\'utilisateur n\'est pas actif' }}
+ {{ foo.roles | join(', ') }}</p>
 
 <h2>Liste de tous les utilisateurs dont le rôle est USER triés par ordre alphabétique d'email</h2>
 {% for user in rolesUsers %}
-<p>{{user.email}} ( id : {{user.id}})</p>
+<p>{{user.email}} ( id : {{user.id}}) {{ user.actif ? 'L\'utilisateur est actif' : 'L\'utilisateur n\'est pas actif' }}
+ {{ user.roles | join(', ') }}</p>
 {% endfor %}
 
 <h2>Liste de tous les utilisateurs inactifs triés par ordre alphabétique d'email</h2>
 {% for user in disabledUsers %}
-<p>{{user.email}} ( id : {{user.id}})</p>
+<p>{{user.email}} ( id : {{user.id}}) {{ user.actif ? 'L\'utilisateur est actif' : 'L\'utilisateur n\'est pas actif' }}
+ {{ user.roles | join(', ') }}</p>
 {% endfor %}
 
 

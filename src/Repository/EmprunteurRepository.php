@@ -27,7 +27,6 @@ class EmprunteurRepository extends ServiceEntityRepository
     public function findAll(): array
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.id IS NOT null')
             ->orderBy('e.nom', 'ASC')
             ->AddOrderBy('e.prenom', 'ASC')
             ->getQuery()

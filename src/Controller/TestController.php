@@ -68,10 +68,10 @@ class TestController extends AbstractController
         $auteur2 = $auteurRepository -> find(2);
         $auteur2livre = $livreRepository ->findByAuteur ($auteur2);
 
-        //A FINIR GENRE
-        // $genreRepository = $em->getRepository(Genre::class);
-        // $genres = $genreRepository -> findAll();
-        // $genre2livre = $livreRepository ->findByGenre ($genres, 'roman');
+    
+        $genreRepository = $em->getRepository(Genre::class);
+        $genres = $genreRepository -> findAll();
+        $genre2livre = $livreRepository ->findByGenre ($genres, 'roman');
 
         // requête de création
         $totum = new Livre();
@@ -114,8 +114,8 @@ class TestController extends AbstractController
             'livre1' => $livre1,
             'lorem' => $lorem,
             'auteur2livre' =>$auteur2livre,
-            // 'genre2livre' => $genre2livre,
-            // 'totum' => $totum,
+            'genre2livre' => $genre2livre,
+            'totum' => $totum,
             'livre2' => $livre2,
         ]);
     }

@@ -29,7 +29,7 @@ class EmprunteurRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.id IS NOT null')
             ->orderBy('e.nom', 'ASC')
-            ->orderBy('e.prenom', 'ASC')
+            ->AddOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -62,7 +62,7 @@ class EmprunteurRepository extends ServiceEntityRepository
             ->orWhere('e.nom LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
             ->orderBy('e.nom', 'ASC')
-            ->orderBy('e.prenom', 'ASC')
+            ->AddOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -78,12 +78,27 @@ class EmprunteurRepository extends ServiceEntityRepository
             ->andWhere('e.telephone LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
             ->orderBy('e.nom', 'ASC')
-            ->orderBy('e.prenom', 'ASC')
+            ->AddOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-
+    
+    /** This methode finds borrowers who are created only before the input date, listing by alphabetical list of lastname and firstname
+    * @param  @value The value to search for 
+    * @return Emprunteur[] Returns an array of borrowers objects
+    */
+    public function findByDateMax($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.createdAt < :value')
+            ->setParameter('value', "$value")
+            ->orderBy('e.nom', 'ASC')
+            ->AddOrderBy('e.prenom', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 
 //    /**

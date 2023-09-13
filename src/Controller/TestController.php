@@ -138,7 +138,7 @@ class TestController extends AbstractController
 
         $tel1234 = $emprunteurRepository ->findByKeyword(1234);
 
-        //ajouter la requête de date de création
+        $emprunteur010321 = $emprunteurRepository ->findByDateMax(('2021-03-01 00:00:00'));
 
         $title='Test des Emprunteurs';
 
@@ -149,6 +149,7 @@ class TestController extends AbstractController
             'user3emprunteur' => $user3emprunteur,
             'foo' =>$foo,
             'tel1234' => $tel1234,
+            'emprunteur010321' =>$emprunteur010321,
             
         ]);
     }

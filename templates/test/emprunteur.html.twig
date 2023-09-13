@@ -27,5 +27,10 @@
 <p>{{emprunteur.nom}} {{emprunteur.prenom}} (telephone :{{emprunteur.telephone}}) ( id : {{emprunteur.id}})</p>
 {% endfor %}
 
+<h2>Liste des emprunteurs dont la date de création est antérieure au 01/03/2021 exclu, triés par ordre alphabétique de nom et prénom</h2>
+{% for emprunteur in emprunteur010321 %}
+<p>{{emprunteur.nom}} {{emprunteur.prenom}} (telephone :{{emprunteur.telephone}}) ( id : {{emprunteur.id}})</p>
+{% endfor %}
+
 
 {% endblock %}

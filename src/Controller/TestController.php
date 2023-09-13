@@ -162,7 +162,19 @@ class TestController extends AbstractController
 
         //requêtes de lecture
 
-        // $emprunts10=$empruntRepository->findByLast10();
+        $emprunts10=$empruntRepository->findByLast10();
+
+        $emprunteurRepository = $em->getRepository(Emprunteur::class);
+        $emprunteur2 = $emprunteurRepository -> find(2);
+        $emprunteur2emprunts = $empruntRepository->findByEmprunteur($emprunteur2);
+
+        $livreRepository = $em->getRepository(Livre::class);
+        $livre3 = $livreRepository -> find(3);
+        $livre3emprunts = $empruntRepository->findByLivre($livre3);
+
+        $retours10=$empruntRepository->findByRetour10();
+
+        $nonretournes10=$empruntRepository->findByNonRetournes10();
         
         //requête de création
 
@@ -199,9 +211,13 @@ class TestController extends AbstractController
 
         return $this->render('test/emprunt.html.twig', [
             'title' => $title,
-            // 'emprunts10' => $emprunts10,
+            'emprunts10' => $emprunts10,
             'emprunt3' => $emprunt3,
             'foofoo' => $foofoo,
+            'emprunteur2emprunts' => $emprunteur2emprunts,
+            'livre3emprunts' => $livre3emprunts,
+            'retours10' => $retours10,
+            'nonretournes10' => $nonretournes10,
         ]);
     }
 }

@@ -4,9 +4,34 @@
 
 {% block body %}
 <h1>{{title}}</h1>
-<h2>Liste des 10 derniers emprunts par ordre choronologique, triés par ordre décroissant de date d'emprunt</h2>
-{# {% for emprunt in emprunts10 %}
-<p>{{emprunt.dateEmprunt}} {{emprunt.dateRetour}} ( id : {{emprunt.id}}) </p>
-{% endfor %} #}
+<h2>Liste des 10 derniers emprunts par ordre chronologique, triés par ordre décroissant de date d'emprunt</h2>
+{% for emprunt in emprunts10 %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
+
+<h2>Liste des emprunts de l'emprunteur dont l'id est 2, triés par ordre croissant de date d'emprunt</h2>
+{% for emprunt in emprunteur2emprunts %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
+
+<h2>Liste des emprunts du livre dont l'id est 3, triés par ordre décroissant de date d'emprunt</h2>
+{% for emprunt in livre3emprunts %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
+
+<h2>Liste des 10 derniers emprunts retournés, triés par ordre décroissant de date de retour</h2>
+{% for emprunt in retours10 %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
+
+<h2>Liste des emprunts non encore retournés, triés par ordre croissant de date de retour</h2>
+{% for emprunt in nonretournes10 %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
+
+<h2>Les données de l'emprunt relié au livre dont l'id est 3</h2>
+{% for emprunt in livre3emprunts %}
+<p>{{emprunt.dateEmprunt |date ('Y/m/d') }} {{emprunt.dateRetour | date ('Y/m/d')}} ( id : {{emprunt.id}}) </p>
+{% endfor %}
 
 {% endblock %}

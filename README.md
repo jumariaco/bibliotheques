@@ -56,6 +56,14 @@ symfony serve
 
 Puis ouvrez la page suivante : [https://localhost:8000](https://localhost:8000)
 
+Personnalisez la fin de l'URL selon le choix des requêtes d'accès aux données :
+
+Pour les requêtes sur la classe User, ouvrez la page suivante : [https://localhost:8000/test/user](https://localhost:8000/test/user).
+Pour les requêtes sur la classe Livre, ouvrez la page suivante : [https://localhost:8000/test/livre](https://localhost:8000/test/livre).
+Pour les requêtes sur la classe Emprunteur, ouvrez la page suivante : [https://localhost:8000/test/emprunteur](https://localhost:8000/test/emprunteur).
+Pour les requêtes sur la classe Emprunt, ouvrez la page suivante : [https://localhost:8000/test/emprunt](https://localhost:8000/test/emprunt).
+
+
 ## Mentions légales
 
 Ce projet est sous licence MIT.

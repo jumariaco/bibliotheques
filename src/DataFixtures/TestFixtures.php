@@ -103,6 +103,8 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunteur->setNom($this->faker->lastName());
             $emprunteur->setPrenom($this->faker->firstName());
             $emprunteur->setTelephone($this->faker->phoneNumber());
+            $createdAt = $this->faker->dateTimeBetween ('-3 year', '-1 year');
+            $emprunteur->setCreatedAt($createdAt);
 
             $this->manager->persist($emprunteur);
 

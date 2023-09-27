@@ -24,14 +24,42 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new-admin', name: 'app_admin_user_new_admin', methods: ['GET', 'POST'])]
+    public function newAdmin(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(AdminProfileType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user
+                ->setRoles(['ROLE_ADMIN'])
+                ->setPassword('')
+            ;
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new-emprunteur', name: 'app_admin_user_new_emprunteur', methods: ['GET', 'POST'])]
+    public function newEmprunteur(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User();
+        $form = $this->createForm(EmprunteurProfileType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user
+                ->setRoles(['ROLE_USER'])
+                ->setPassword('')
+            ;
             $entityManager->persist($user);
             $entityManager->flush();
 

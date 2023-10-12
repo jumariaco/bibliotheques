@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+       <div class="col">
+            <h2>Nos livres</h2>
+            {% if livres %}
+            <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Année d'édition</th>
+                <th>Nombre  de pages</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td><a href="{{ path('app_front_livre_show',{id: livre.id}) }}">{{ livre.titre }}</a></td>
+                <td>{{ livre.auteur.nom }} {{ livre.auteur.prenom }}</td>
+                <td>{{ livre.anneeEdition }}</td>
+                <td>{{ livre.nombrePage }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            {% endif %}
+       </div> 
+    </div>
+</div>
+{% endblock %}

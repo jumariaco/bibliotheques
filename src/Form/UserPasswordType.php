@@ -30,13 +30,13 @@ class UserPasswordType extends AbstractType
                     'autocomplete' => 'new-password'
                 ]],
                 'first_options' => ['label' => 'Mot de passe'],
-                'second options' =>['label' => 'Confirmer le mot de passe'],
+                'second_options' =>['label' => 'Confirmer le mot de passe'],
                 'required' => true,
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($hasher) {
                 $user=$event->getData();
-                if (!user) {
+                if (!$user) {
                     return;
                 }
                 $password=$user->getPassword();

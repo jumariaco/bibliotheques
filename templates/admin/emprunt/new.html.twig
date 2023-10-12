@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel emprunt{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel emprunt</h1>
+
+    {{ include('admin/emprunt/_form.html.twig') }}
+
+    {# {{ form_start(form) }}
+    {{ form_rest(form) }} {# Affiche tous les autres champs, y compris "emprunteur" et "livre" #}
+    {# {{ form_end(form) }} #} 
+
+    <a href="{{ path('app_admin_emprunt_index') }}">back to list</a>
+{% endblock %}

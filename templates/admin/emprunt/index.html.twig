@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunts{% endblock %}
+
+{% block body %}
+    <h1>Catalogue des emprunts</h1>
+
+    <a href="{{ path('app_admin_emprunt_new') }}">Créer un nouvel emprunt</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Emprunteur</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour</th>
+                <th>Livre</th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt in emprunts %}
+            <tr>
+                <td>{{ emprunt.id }}</td>
+                <td>{{ emprunt.emprunteur.nom }} {{ emprunt.emprunteur.prenom }}</td>
+                <td>{{ emprunt.dateEmprunt ? emprunt.dateEmprunt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{emprunt.livre.titre}}</td>
+                <td>{{ emprunt.createdAt ? emprunt.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunt.updatedAt ? emprunt.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_emprunt_show', {'id': emprunt.id}) }}">Détail</a>
+                    <a href="{{ path('app_admin_emprunt_edit', {'id': emprunt.id}) }}">Modifier</a>
+                    <a href="{{ path('app_admin_emprunt_delete', {'id': emprunt.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

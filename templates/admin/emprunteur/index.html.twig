@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunteurs{% endblock %}
+
+{% block body %}
+    <h1>Catalogue des emprunteurs</h1>
+    <a href="{{ path('app_admin_user_new_emprunteur') }}">Créer un nouvel emprunteur</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Email </th>
+                <th> Actif </th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunteur in emprunteurs %}
+            <tr>
+                <td>{{ emprunteur.id }}</td>
+                <td>{{ emprunteur.nom }}</td>
+                <td>{{ emprunteur.prenom }}</td>
+                <td>{{ emprunteur.telephone }}</td>
+                <td>{{ emprunteur.user.email }}</td>
+                <td>{{ emprunteur.user.actif ? 'Actif' : 'Désactif' }}</td>
+                <td>{{ emprunteur.createdAt ? emprunteur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunteur.updatedAt ? emprunteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_emprunteur_show', {'id': emprunteur.id}) }}">Détails</a>
+                    <a href="{{ path('app_admin_user_edit', {'id': emprunteur.id}) }}">Modifier</a>
+                    <a href="{{ path('app_admin_emprunteur_delete', {'id': emprunteur.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

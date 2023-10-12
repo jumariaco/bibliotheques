@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres{% endblock %}
+
+{% block body %}
+    <h1>Catalogue des livres</h1>
+
+    <a href="{{ path('app_admin_livre_new') }}">Créer un nouveau livre</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Année d'édition</th>
+                <th>Nombre de pages</th>
+                <th>Code ISBN</th>
+                <th>Date de création</th>
+                <th>Date de mise à jour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.auteur.nom }} {{ livre.auteur.prenom }}</td>
+                <td>{{ livre.anneeEdition }}</td>
+                <td>{{ livre.nombrePage }}</td>
+                <td>{{ livre.codeIsbn }}</td>
+                <td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}">Détails</a>
+                    <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}">Modifier</a>
+                    <a href="{{ path('app_admin_livre_delete', {'id': livre.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

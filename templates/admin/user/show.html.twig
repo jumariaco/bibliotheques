@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>
+                    {% for role in user.roles %}
+                        {# {{role}}{ % if not loop.last %}, {% endif %} #}
+                        {# la ligne au-dessus a la même fonction que celle du dessous mais en-dessous c'est en ternaire #}
+                        {{role}}{{ loop.last ? '':',' }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% if 'ROLE_ADMIN' not in user.roles %}
+            {# in est un élément qui permet de savoir si un élément ets ds une liste #}
+             <tr>
+                    <th>Coordonnées Emprunteur</th>
+                    <td>
+                        {{ user.emprunteur.nom }} {{ user.emprunteur.prenom }}
+                        {% endif %}
+                    </td>
+                </tr>
+            <tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ user.actif ? 'Actif' : 'Désactif' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_user_index') }}">back to list</a>
+
+    {{ include('admin/user/_delete_form.html.twig') }}
+{% endblock %}

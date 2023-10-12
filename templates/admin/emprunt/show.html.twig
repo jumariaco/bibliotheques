@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunt{% endblock %}
+
+{% block body %}
+    <h1>Emprunt</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ emprunt.id }}</td>
+            </tr>
+            <tr>
+                <th>Emprunteur</th>
+                <td>{{ emprunt.emprunteur.nom }} {{ emprunt.emprunteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Date d'emprunt</th>
+                <td>{{ emprunt.dateEmprunt ? emprunt.dateEmprunt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de retour</th>
+                <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Livre</th>
+                <td>{{ emprunt.livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ emprunt.createdAt ? emprunt.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ emprunt.updatedAt ? emprunt.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_emprunt_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_emprunt_edit', {'id': emprunt.id}) }}">edit</a>
+
+    {{ include('admin/emprunt/_delete_form.html.twig') }}
+{% endblock %}

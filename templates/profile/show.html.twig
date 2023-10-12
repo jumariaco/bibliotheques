@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+             <tr>
+                    <th>Nom</th>
+                    <td>{{ user.emprunteur.nom }} </td>
+            </tr>
+             <tr>
+                    <th>Prénom</th>
+                    <td> {{ user.emprunteur.prenom }}</td>
+            </tr>
+             <tr>
+                    <th>Téléphone</th>
+                    <td>{{ user.emprunteur.telephone }} </td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ user.actif ? 'Actif' : 'Désactif' }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}

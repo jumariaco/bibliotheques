@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Emprunteur;
+use App\Entity\User;
 use App\Entity\Emprunt;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -91,6 +93,7 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+   
 
 //    /**
 //     * @return Emprunt[] Returns an array of Emprunt objects

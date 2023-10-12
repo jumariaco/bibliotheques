@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+
+        {% if app.request.attributes.get('_route') == 'app_admin_user_new_emprunteur' %}
+            <h1>Créer un nouvel emprunteur</h1>
+        {% elseif app.request.attributes.get('_route') == 'app_admin_user_new_admin' %}
+            <h1>Créer un nouvel administrateur</h1>
+        {% endif %}
+
+
+    {{ include('admin/user/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_user_index') }}">back to list</a>
+{% endblock %}

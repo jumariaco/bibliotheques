@@ -48,16 +48,16 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('app_admin_livre_index'));
+        // return new RedirectResponse($this->urlGenerator->generate('app_admin_emprunt_index'));
     
 
         $user=$token->getUser();
         $roles=$token->getRoleNames();
 
         if (in_array('ROLE_ADMIN', $roles)) {
-            return new RedirectResponse($this->urlGenerator->generate('app_admin_livre_index'));
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_emprunt_index'));
         }else{
-            return new RedirectResponse($this->urlGenerator->generate('app_profile_show', [
+            return new RedirectResponse($this->urlGenerator->generate('app_emprunt_index', [
                 'id' => $user->getId(),
             ]));
         }

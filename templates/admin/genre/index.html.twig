@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Genre index{% endblock %}
+{% block title %}Genres{% endblock %}
 
 {% block body %}
-    <h1>Genre index</h1>
+    <h1>Catalogue des genres</h1>
+
+    <a href="{{ path('app_admin_genre_new') }}">Créer un nouveau genre</a>
 
     <table class="table">
         <thead>
@@ -11,9 +13,8 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>DeletedAt</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,7 +24,6 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.nom }}</td>
                 <td>{{ genre.description }}</td>
-                <td>{{ genre.deletedAt ? genre.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ genre.createdAt ? genre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ genre.updatedAt ? genre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_genre_new') }}">Create new</a>
+    
 {% endblock %}

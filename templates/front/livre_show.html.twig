@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+    <h1>Livre : {{ livre.titre }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ livre.auteur.nom }} {{ livre.auteur.prenom }}</td>  
+            </tr>
+            <tr>
+                <th>Année d'édition</th>
+                <td>{{ livre.anneeEdition }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de pages</th>
+                <td>{{ livre.nombrePage }}</td>
+            </tr>
+            <tr>
+                <th>Code ISBN</th>
+                <td>{{ livre.codeIsbn }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{% for genre in livre.genres %}
+                    {{genre.nom}}{% if not loop.last %},{% endif %}
+                {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_home') }}">back to list</a>
+{% endblock %}

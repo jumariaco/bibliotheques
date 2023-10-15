@@ -23,12 +23,9 @@ class LivreType extends AbstractType
             ->add('auteur', EntityType::class, [
                 'class' => Auteur::class,
                 'choice_label'=> function(Auteur $auteur){
-                    return "{$auteur->getPrenom()}{$auteur->getNom()} (id: {$auteur->getId()})";
+                    return "{$auteur->getNom()} {$auteur->getPrenom()}(id: {$auteur->getId()})";
+                    
                 },
-                'multiple' => false,
-                'expanded' => true,
-                'attr' => ['class' => 'form_scrollable-checkboxes'],
-                'by_reference' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('a')
                         ->orderBy('a.nom', 'ASC')

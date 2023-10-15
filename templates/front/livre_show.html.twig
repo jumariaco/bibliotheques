@@ -26,6 +26,16 @@
                 <td>{{ livre.nombrePage }}</td>
             </tr>
             <tr>
+                <th>Disponibilité</th>
+                <td>{% set disponibilite = 'disponible' %}
+                    {% for emprunt in livre.emprunts %}
+                        {% if emprunt.dateEmprunt is not null and emprunt.dateRetour is null %}
+                            {% set disponibilite = 'emprunté' %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ disponibilite }}</td>
+            </tr>
+            <tr>
                 <th>Code ISBN</th>
                 <td>{{ livre.codeIsbn }}</td>
             </tr>

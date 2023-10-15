@@ -15,6 +15,7 @@
                 <th>Auteur</th>
                 <th>Année d'édition</th>
                 <th>Nombre de pages</th>
+                <th>Disponibilité</th>
                 <th>Code ISBN</th>
                 <th>Date de création</th>
                 <th>Date de mise à jour</th>
@@ -29,6 +30,13 @@
                 <td>{{ livre.auteur.nom }} {{ livre.auteur.prenom }}</td>
                 <td>{{ livre.anneeEdition }}</td>
                 <td>{{ livre.nombrePage }}</td>
+                <td>{% set disponibilite = 'disponible' %}
+                    {% for emprunt in livre.emprunts %}
+                        {% if emprunt.dateEmprunt is not null and emprunt.dateRetour is null %}
+                            {% set disponibilite = 'emprunté' %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ disponibilite }}</td>
                 <td>{{ livre.codeIsbn }}</td>
                 <td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>

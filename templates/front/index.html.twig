@@ -16,6 +16,7 @@
                 <th>Auteur</th>
                 <th>Année d'édition</th>
                 <th>Nombre  de pages</th>
+                <th>Disponibilité</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,13 @@
                 <td>{{ livre.auteur.nom }} {{ livre.auteur.prenom }}</td>
                 <td>{{ livre.anneeEdition }}</td>
                 <td>{{ livre.nombrePage }}</td>
+                <td>{% set disponibilite = 'disponible' %}
+                    {% for emprunt in livre.emprunts %}
+                        {% if emprunt.dateEmprunt is not null and emprunt.dateRetour is null %}
+                            {% set disponibilite = 'emprunté' %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ disponibilite }}</td>
             </tr>
         {% else %}
             <tr>

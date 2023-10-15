@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmprunteurRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName:"deletedAt", timeAware:false, hardDelete:false)]
@@ -23,12 +24,15 @@ class Emprunteur
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min:2, max:100)]
     #[ORM\Column(length: 190)]
     private ?string $nom = null;
 
+    #[Assert\Length(min:2, max:100)]
     #[ORM\Column(length: 190)]
     private ?string $prenom = null;
 
+    #[Assert\Length(min:2, max:100)]
     #[ORM\Column(length: 190)]
     private ?string $telephone = null;
 

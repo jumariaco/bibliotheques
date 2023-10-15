@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName:"deletedAt", timeAware:false, hardDelete:false)]
@@ -23,6 +24,7 @@ class Livre
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min:2, max:100)]
     #[ORM\Column(length: 190)]
     private ?string $titre = null;
 
@@ -32,6 +34,7 @@ class Livre
     #[ORM\Column]
     private ?int $nombrePage = null;
 
+    #[Assert\Length(max:13)]
     #[ORM\Column(length: 190, nullable: true)]
     private ?string $codeIsbn = null;
 
@@ -42,7 +45,7 @@ class Livre
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'livres')]
     private Collection $genres;
 
-    #[ORM\OneToMany(mappedBy: 'livre', targetEntity: Emprunt::class)]
+    #[ORM\OneToMany(mappedBy: 'livre', targetEntity: Emprunt::class, cascade: ['persist', 'remove'])]
     private Collection $emprunts;
 
     public function __construct()

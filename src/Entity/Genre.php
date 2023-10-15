@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GenreRepository::class)]
 #[Gedmo\SoftDeleteable(fieldName:"deletedAt", timeAware:false, hardDelete:false)]
@@ -24,9 +25,11 @@ class Genre
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min:2, max:100)]
     #[ORM\Column(length: 190)]
     private ?string $nom = null;
 
+    #[Assert\Length(max:1000)]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
